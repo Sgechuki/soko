@@ -6,8 +6,7 @@ document.querySelectorAll('.add-to-cart').forEach(function(button) {
 
         // Find the product details within the container
         var productName = container.querySelector('.price h4').textContent;
-        var priceRange = container.querySelector('.price p').textContent;
-        var price = priceRange.split(' - ')[0]; // Assuming you want to add the minimum price to the cart
+        var price = container.querySelector('.price p').textContent;
         var imageURL = container.querySelector('img').getAttribute('src');
 
         // Construct the item object

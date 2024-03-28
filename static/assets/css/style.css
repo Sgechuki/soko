@@ -301,6 +301,7 @@
     outline:0;
   }
 
+  .unit-price,
   .total-price {
     width: 83px;
     padding-top: 27px;

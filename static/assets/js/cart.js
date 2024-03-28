@@ -1,38 +1,46 @@
 $(document).ready(function() {
-$('.like-btn').on('click', function() {
-    $(this).toggleClass('is-active');
- });
+    $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+    });
 
- $('.minus-btn').on('click', function(e) {
-    e.preventDefault();
-    var $this = $(this);
-    var $input = $this.closest('div').find('input');
-    var value = parseInt($input.val());
- 
-    if (value > 1) {
-        value = value - 1;
-    } else {
-        pass;
-    }
- 
-  $input.val(value);
-});
-  $('.plus-btn').on('click', function(e) {
-    e.preventDefault();
-    var $this = $(this);
-    var $input = $this.closest('div').find('input');
-    var value = parseInt($input.val());
- 
-    if (value < 100) {
-        value = value + 1;
-    } else {
-        value =100;
-    }
- 
-    $input.val(value);
+    $('.minus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
 
-  });
+        if (value > 1) {
+            value = value - 1;
+            $input.val(value);
+            updateQuantityInLocalStorage($input);
+        } else {
+            // Handle the case where quantity is already at the minimum
+        }
+    });
+
+    $('.plus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value < 100) {
+            value = value + 1;
+            $input.val(value);
+            updateQuantityInLocalStorage($input);
+        } else {
+            // Handle the case where quantity is already at the maximum
+        }
+    });
+
+    function updateQuantityInLocalStorage($input) {
+        var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        var index = $input.closest('.item').index();
+        cartItems[index].quantity = parseInt($input.val());
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
   // Retrieve cart items from localStorage
@@ -60,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span>${item.name}</span>
               <!-- You can add more details here if needed -->
           </div>
+          <div class="unit-price">$${item.price}</div>
           <div class="quantity">
               <button class="plus-btn" type="button" name="button">
                   <img src="../../static/assets/images/plus.svg" alt=""/>
