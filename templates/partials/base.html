@@ -14,7 +14,7 @@
         <!-- Navigation bar -->
         <div>
             <ul class="navbar">
-                <li><a class="active" href="{ % urls index % }">Home</a></li>
+                <li><a class="active" href="{% url 'soko:index' %}">Home</a></li>
                 {% for c in categories %}
                 <li><a href="{{ c.get_absolute_url }}">{{ c.name|title }}</title></a></li>
                 {% endfor %}
