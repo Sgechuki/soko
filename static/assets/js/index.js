@@ -6,14 +6,16 @@ document.querySelectorAll('.add-to-cart').forEach(function(button) {
 
         // Find the product details within the container
         var productName = container.querySelector('.price h4').textContent;
-        var price = container.querySelector('.price p').textContent;
+        var priceText = container.querySelector('.price p').textContent;
+        var price = parseFloat(priceText.replace('$', '')); // Remove '$' sign and convert to float
         var imageURL = container.querySelector('img').getAttribute('src');
 
         // Construct the item object
         var item = {
             name: productName,
-            price: parseFloat(price.replace('$', '')), // Remove '$' sign and convert to float
+            price: price,
             quantity: 1, // Assuming you always add one item at a time
+            totalPrice: price, // Initial total is the same as the unit price
             image: imageURL // Add the image URL to the item object
         };
 
@@ -25,9 +27,10 @@ document.querySelectorAll('.add-to-cart').forEach(function(button) {
             return cartItem.name === item.name;
         });
 
-        // If item already exists, increase quantity
+        // If item already exists, increase quantity and update total price
         if (existingItemIndex !== -1) {
             cart[existingItemIndex].quantity += 1;
+            cart[existingItemIndex].total = cart[existingItemIndex].price * cart[existingItemIndex].quantity;
         } else {
             // Otherwise, add the item to the cart
             cart.push(item);

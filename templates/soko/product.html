@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<section>
+<div class="container flex">
+  <div class="left">
+    <div class="main-image">
+      <img src="{{ response.images.0 }}" alt="" class="slide">
+    </div>
+    <div class="option flex">
+      <img src="{{ response.images.1 }}" onclick="img('/static/assets/images/product_07b.jpg')">
+      <img src="{{ response.images.2 }}" onclick="img('/static/assets/images/product_07b.jpg')">      
+    </div>
+  </div>
+  <div class="right">
+    <h3>{{ response.title }}</h3>
+    <h4> <small>$ </small>{{ response.price }}</h4>
+    <p>{{ response.description }}</p>
+    <h5>Color-Rose Gold</h5>
+    <div class="color flex">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h5>Quantity</h5>
+    <div class="add flex1">
+      <input type="number" value="1" class="prdQuantity"/>
+    </div>
+    <button type="button" id="add-to-cart">Add To Cart</button>
+  </div>
+  
+</div>
+</section>
+{% load static %}
+
+{% endblock content %}

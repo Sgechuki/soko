@@ -41,6 +41,13 @@
 .icons a:not(:last-child) {
     margin-right: 30px;
 }
+.icons a{
+  text-decoration: none;
+}
+.icons span {
+  color: #ee1c47;
+  font-weight: 600;
+}
 /*---Hero----*/
 
 .hero {
@@ -153,9 +160,13 @@
     font-weight: 600;
 }
 
-.add-to-cart {
+.view-product {
   padding-top: 3px;
+  background-color: navy;
+  color: white;
+  text-decoration: none;
 }
+
 
 /*SHOPPING CART*/
 
@@ -336,3 +347,170 @@
       margin-right: 20px;
     }
   }
+
+  /*PRODUCT DETAIL*/
+  .product-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+  }
+
+  /* Columns */
+.left-column {
+  width: 65%;
+  position: relative;
+}
+ 
+.right-column {
+  width: 35%;
+  margin-top: 60px;
+}
+
+/* Left Column */
+.left-column img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+ 
+.left-column img.active {
+  opacity: 1;
+}
+
+/* Product Description */
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+.product-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+
+/* Style for the container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  gap: 20px;
+  border: 1px solid blueviolet
+
+}
+
+/* Style for the left section */
+.left {
+  display: flex;
+  flex: 0 0 45%;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0px;
+  border: 1px solid blueviolet;
+  }
+
+.main-image {
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.option img {
+  width: 50px;
+  margin-right: 10px;
+  cursor: pointer;
+  
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the right section */
+.right {
+  flex: 0 0 45%;
+  margin: 20px 0px;
+  
+}
+
+.right h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.right h4 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.right p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.color span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f00;
+  margin-right: 5px;
+}
+
+.add {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add span {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin: 0 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
