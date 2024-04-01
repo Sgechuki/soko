@@ -15,7 +15,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
     def get_absolute_url(self):
-        return reverse('soko:product', args=[self.slug])
+        return reverse('soko:category_list', args=[self.id])
     
     def __str__(self):
         return self.name

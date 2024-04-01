@@ -35,8 +35,8 @@ def product(request, pk):
     }
     return render(request, 'soko/product.html', context)
 
-def category_list(request, category_slug):
-    category = get_object_or_404(Category, slug=category_slug)
+def category_list(request, fk):
+    category = get_object_or_404(Category, id=fk)
     products = Product.objects.filter(category=category)
     context = {
         'category': category,
