@@ -14,13 +14,6 @@ def index(request):
     
     return render(request, 'soko/index.html', context)
 
-def categories(request):
-    categories = Category.objects.all()
-    context = {
-        'categories': categories
-    }
-    return context
-
 def cart(request):
     return render(request, 'soko/cart_summary.html')
 
