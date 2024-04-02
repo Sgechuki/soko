@@ -14,9 +14,6 @@ def index(request):
     
     return render(request, 'soko/index.html', context)
 
-def cart(request):
-    return render(request, 'soko/cart_summary.html')
-
 def checkout(request):
     return render(request, 'soko/checkout.html')
 

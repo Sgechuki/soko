@@ -1,8 +1,9 @@
 {% extends 'partials/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-{% load static %}
 
 <div class="shopping-cart">
     <!-- Title -->
@@ -10,8 +11,31 @@
         Shopping Cart
     </div>
 
-    <!-- Product #1 -->
-
+    <!-- Product -->
+    <div class="item">
+        <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+        </div>
+        <div class="image">
+            <img src="${item.image}" alt=""/>
+        </div>
+        <div class="description">
+            <span>${item.name}</span>
+            <!-- You can add more details here if needed -->
+        </div>
+        <div class="unit-price">$${item.price}</div>
+        <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+                <img src="../../static/assets/images/plus.svg" alt=""/>
+            </button>
+            <input type="text" name="name" value="${item.quantity}">
+            <button class="minus-btn" type="button" name="button">
+                <img src="../../static/assets/images/minus.svg" alt=""/>
+            </button>
+        </div>
+        <div class="total-price">$${item.price * item.quantity}</div>
+    </div>
 </div>
 <div class="total">
     Total: $<span id="total-price-sum">0.00</span>
