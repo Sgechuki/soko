@@ -18,10 +18,14 @@ def checkout(request):
     return render(request, 'soko/checkout.html')
 
 def product(request, pk):
+    products = get_object_or_404(Product, id=pk)
+
     url = "https://api.escuelajs.co/api/v1/products/{}".format(pk)
     response = requests.get(url).json()
+    
     context = {
-        'response': response    
+        'response': response,
+        'products': products    
     }
     return render(request, 'soko/product.html', context)
 

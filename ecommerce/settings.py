@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     #Custom Apps
     'soko',
     'userauths',
-    'cart'
+    'cart',
 ]
 
 MIDDLEWARE = [

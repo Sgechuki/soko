@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load custom_filters %}
+
 {% block content %}
 
 
@@ -11,36 +13,59 @@
         Shopping Cart
     </div>
 
+    {% for item in cart %}
+        {% with product=item.product %}
     <!-- Product -->
-    <div class="item">
+    <div class="item" data-index="{{ product.id }}">
         <div class="buttons">
-            <span class="delete-btn"></span>
-            <span class="like-btn"></span>
+            <button type="button" id="delete-btn" class="delete-btn" data-index="{{ product.id }}"></button>
         </div>
+        {% with product.images|slice:"2:-2"|split_by_comma as split_list %}
         <div class="image">
-            <img src="${item.image}" alt=""/>
+            <img src="{{ split_list.0 }}" alt=""/>
         </div>
+        {% endwith %}
         <div class="description">
-            <span>${item.name}</span>
+            <h4>{{ product.title }}</h4>
+            <p>{{ product.description }}</p>
             <!-- You can add more details here if needed -->
         </div>
-        <div class="unit-price">$${item.price}</div>
+        <div class="unit-price">{{ product.price }}</div>
         <div class="quantity">
-            <button class="plus-btn" type="button" name="button">
-                <img src="../../static/assets/images/plus.svg" alt=""/>
-            </button>
-            <input type="text" name="name" value="${item.quantity}">
-            <button class="minus-btn" type="button" name="button">
-                <img src="../../static/assets/images/minus.svg" alt=""/>
-            </button>
+                <input type="number" name="name" value= "{{ item.qty }}" min="1">
         </div>
-        <div class="total-price">$${item.price * item.quantity}</div>
+        <div class="total-price"><strong>${{ item.total_price }}</strong></div>
     </div>
+        {% endwith %}
+    {% endfor %}
 </div>
 <div class="total">
-    Total: $<span id="total-price-sum">0.00</span>
+    Total: $<span id="total-price-sum">{{ cart.get_total_price }}</span>
 </div>
 
-<button id="clear-cart">Clear Cart</button>
+<button id="clear-cart" >Clear Cart</button>
+
+<script>
+    $(document).ready(function() {
+      $(document).on('click', '.delete-btn', function(e) {
+        var prodid = $(this).data('index');
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'cart:cart_delete' %}",
+        data: {
+          productId: $(this).data('index'),
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+          action: 'post'
+        },
+        success: function (json) {
+            $('.item[data-index="'+ prodid +'"]').remove();
+        },
+        error: function (xhr, errmsg, err) {}
+      });
+      alert('Deleted');
+    });
+  });
+  </script>
 
 {% endblock content %}

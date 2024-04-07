@@ -171,7 +171,7 @@
 /*SHOPPING CART*/
 
 .shopping-cart {
-    width: 97%;
+    width: 90%;
     height: auto;
     margin: 80px auto;
     background: #FFFFFF;
@@ -191,12 +191,12 @@
 }
 
 .item {
-    height: 120px;
+    height: 200px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly
 }
 
-.item:nth-child(3) {
+.item:nth-child() {
     border-top: 1px solid #E1E8EE;
     border-bottom: 1px solid #E1E8EE;
 }
@@ -207,13 +207,13 @@
     margin-right: 60px;
 }
 
-.delete-btn,
+#delete-btn,
 .like-btn {
     display: inline-block;
     cursor: pointer;
 }
 
-.delete-btn {
+#delete-btn {
     width: 18px;
     height: 17px;
     background: url('../images/delete-icn.svg') no-repeat center;
@@ -259,21 +259,22 @@
   .description {
     padding-top: 10px;
     margin-right: 60px;
-    width: 55%;
+    width: 35%;
     overflow: hidden;
   }
    
-  .description span {
+  .description h4 {
     display: block;
-    font-size: 14px;
+    font-size: 16px;
     color: #43484D;
-    font-weight: 400;
+    font-weight: 700;
+    margin-bottom: 10px;
   }
    
-  .description span:first-child {
+  .description h4:first-child {
     margin-bottom: 5px;
   }
-  .description span:last-child {
+  .description h4:last-child {
     font-weight: 300;
     margin-top: 8px;
     color: #86939E;

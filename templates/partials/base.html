@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <title>Your E-commerce Site</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="{% static '../static/assets/js/jquery-3.7.1.min.js' %}"></script>
 </head>
 <body>
     <header class="header">
@@ -22,7 +24,18 @@
         </div>
         <div class="icons">
             <a href="#"><i class='bx bx-user'></i></a>
-            <a href="{% url 'cart:cart_summary' %}"><i class='bx bx-cart'></i><span>0</span></a>
+            <a href="{% url 'cart:cart_summary' %}">
+                <i class='bx bx-cart'></i>
+                {% with total_qty=cart|length %}
+                    <span id="cart-qty">                
+                        {% if total_qty > 0 %}
+                            {{ total_qty }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </span>
+                {% endwith %}
+            </a>
         </div>
     </header>
 
@@ -56,7 +69,6 @@
         </div>
         -->
     </footer>
-    <script src="{% static '../static/assets/js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static '../static/assets/js/cart.js' %}"></script>
     <script src="{% static 'assets/js/product.js' %}"></script>
     <script src="{% static 'assets/js/index.js' %}"></script>

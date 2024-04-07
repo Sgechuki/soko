@@ -1,21 +1,28 @@
 {% extends 'partials/base.html' %}
 
+{% load static %}
+
+{% load custom_filters %}
+
 {% block content %}
+
 <section>
 <div class="container flex">
   <div class="left">
+    {% with products.images|slice:"2:-2"|split_by_comma as split_list %}
     <div class="main-image">
-      <img src="{{ response.images.0 }}" alt="" class="slide">
+      <img src="{{ split_list.0 }}" alt="" class="slide">
     </div>
     <div class="option flex">
-      <img src="{{ response.images.1 }}" onclick="img('/static/assets/images/product_07b.jpg')">
-      <img src="{{ response.images.2 }}" onclick="img('/static/assets/images/product_07b.jpg')">      
+      <img src="{{ split_list.1 }}" onclick="img('split_list.1')">
+      <img src="{{ split_list.2 }}" onclick="img('split_list.2')">      
     </div>
+    {% endwith %}
   </div>
   <div class="right">
-    <h3>{{ response.title }}</h3>
-    <h4> <small>$ </small>{{ response.price }}</h4>
-    <p>{{ response.description }}</p>
+    <h3>{{ products.title }}</h3>
+    <h4> <small>$ </small>{{ products.price }}</h4>
+    <p>{{ products.description }}</p>
     <h5>Color-Rose Gold</h5>
     <div class="color flex">
       <span></span>
@@ -25,13 +32,35 @@
     </div>
     <h5>Quantity</h5>
     <div class="add flex1">
-      <input type="number" value="1" class="prdQuantity"/>
+      <input type="number" value="1" min="1" class="prdQuantity"/>
     </div>
-    <button type="button" id="add-to-cart">Add To Cart</button>
+    <button type="button" id="add-to-cart" value="{{ products.id}}">Add To Cart</button>
   </div>
   
 </div>
 </section>
-{% load static %}
+
+<script>
+  $(document).ready(function() {
+    $(document).on('click', '#add-to-cart', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'cart:cart_add' %}",
+      data: {
+        productId: $('#add-to-cart').val(),
+        productQty: $('.prdQuantity').val(),
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        action: 'post'
+      },
+      success: function (json) {
+        document.getElementById("cart-qty").innerHTML = json.qty
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+    alert('Clicked');
+  });
+});
+</script>
 
 {% endblock content %}
