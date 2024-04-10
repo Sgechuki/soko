@@ -222,24 +222,6 @@
     border-bottom: 1px solid #E1E8EE;
 }
 
-.buttons {
-    position: relative;
-    padding-top: 30px;
-    margin-right: 60px;
-}
-
-#delete-btn,
-.like-btn {
-    display: inline-block;
-    cursor: pointer;
-}
-
-#delete-btn {
-    width: 18px;
-    height: 17px;
-    background: url('../images/delete-icn.svg') no-repeat center;
-}
-
 .like-btn {
     position: absolute;
     top: 9px;
@@ -302,26 +284,18 @@
   }
 
   .quantity {
-    padding-top: 20px;
-    margin-right: 60px;
+    padding-top: 27px;
   }
   .quantity input {
-    border: none;
-    text-align: center;
-    width: 32px;
+    border: 1px solid grey;
+    text-align: left;
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
+    margin-bottom: 10px;
+   
   }
    
-  button[class*=btn] {
-    width: 30px;
-    height: 30px;
-    background-color: #E1E8EE;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
   .minus-btn img {
     margin-bottom: 3px;
   }
@@ -365,8 +339,10 @@
       text-align: center;
       margin: 6px 0;
     }
+
     .buttons {
-      margin-right: 20px;
+      display: flex;
+      justify-items: space-between;
     }
   }
 

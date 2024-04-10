@@ -21,9 +21,11 @@ class Cart():
         """
         Adding and updating the users basket session data
         """
-        product_id = product.id
+        product_id = str(product.id)
 
-        if product_id not in self.cart:
+        if product_id in self.cart:
+            self.cart[product_id]['qty'] = qty
+        else:
             self.cart[product_id] = {'price': str(product.price), 'qty': int(qty)}
             
         self.save()
@@ -63,6 +65,18 @@ class Cart():
         if product_id in self.cart:
             del self.cart[product_id]
         self.save()
-        
+    
+    def update(self, product, qty):
+        """
+        Update values in session data
+        """
+        product_id = str(product)
+        qty = qty
+
+        if product_id in self.cart:
+            self.cart[product_id]['qty'] = qty
+
+        self.save()
+
     def save(self):
         self.session.modified = True

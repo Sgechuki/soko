@@ -17,9 +17,6 @@
         {% with product=item.product %}
     <!-- Product -->
     <div class="item" data-index="{{ product.id }}">
-        <div class="buttons">
-            <button type="button" id="delete-btn" class="delete-btn" data-index="{{ product.id }}"></button>
-        </div>
         {% with product.images|slice:"2:-2"|split_by_comma as split_list %}
         <div class="image">
             <img src="{{ split_list.0 }}" alt=""/>
@@ -32,9 +29,13 @@
         </div>
         <div class="unit-price">{{ product.price }}</div>
         <div class="quantity">
-                <input type="number" name="name" value= "{{ item.qty }}" min="1">
+                <input type="number" name="name" class="quantity-input" id="quantity-input" data-index="{{ product.id }}" value= "{{ item.qty }}" min="1">
+                <div class="buttons">
+                    <button type="button" id="update-btn" class="update-btn" data-index="{{ product.id }}">Update</button>
+                    <button type="button" id="delete-btn" class="delete-btn" data-index="{{ product.id }}">Delete</button>
+                </div>
         </div>
-        <div class="total-price"><strong>${{ item.total_price }}</strong></div>
+        <div class="total-price"><strong>${{ product.price }}</strong></div>
     </div>
         {% endwith %}
     {% endfor %}
@@ -60,10 +61,35 @@
         },
         success: function (json) {
             $('.item[data-index="'+ prodid +'"]').remove();
+            document.getElementById("total-price-sum").innerHTML = json.subtotal
+            document.getElementById("cart-qty").innerHTML = json.qty
         },
         error: function (xhr, errmsg, err) {}
       });
       alert('Deleted');
+    });
+  });
+
+  $(document).ready(function() {
+      $(document).on('click', '.update-btn', function(e) {
+        var prodid = $(this).data('index');
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'cart:cart_update' %}",
+        data: {
+          productId: $(this).data('index'),
+          productQty: $('.quantity-input[data-index="'+ prodid +'"]').val(),
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+          action: 'post'
+        },
+        success: function (json) {
+            document.getElementById("cart-qty").innerHTML = json.qty
+            document.getElementById("total-price-sum").innerHTML = json.subtotal
+        },
+        error: function (xhr, errmsg, err) {}
+      });
+      alert('Updated');
     });
   });
   </script>
