@@ -6,6 +6,7 @@
     font-family: 'Spartan', sans-serif;
 }
 
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -65,11 +66,21 @@
 .main-promo {
     margin-left: 75px;
     font-size: 35px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.shop-now {
+  margin-bottom: 20px;
 }
 .footer {
     display: flex;
     justify-content: space-between;
-    margin: 0 20px;
+    background-color: #F5F5F5;
+    padding: 20px 100px 20px 20px;
+    box-shadow: 0px 5px 15px rgb(105,105,105);
+    margin-top: 50px;
 }
 
 .col {
@@ -167,13 +178,14 @@
 
 .view-product {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #c1121f;
   color: white;
   text-decoration: none;
+  line-height: 10px;
+  font-size: 12px;
   border-radius: 5px;
   border: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-
 }
 
 .view-product:hover,
@@ -284,23 +296,20 @@
   }
 
   .quantity {
-    padding-top: 27px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
   }
   .quantity input {
     border: 1px solid grey;
-    text-align: left;
+    margin-top: 25px;
+    text-align: center;
     font-size: 16px;
     color: #43484D;
-    font-weight: 300;
     margin-bottom: 10px;
+    width: 50px;
    
-  }
-   
-  .minus-btn img {
-    margin-bottom: 3px;
-  }
-  .plus-btn img {
-    margin-top: 2px;
   }
    
   button:focus,
@@ -316,6 +325,22 @@
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
+  }
+
+  .totals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 90%;
+    margin: 80px auto;
+  }
+
+  .cart-totals :not(:last-child){
+    margin-bottom: 10px;
+  }
+  .checkout-btn {
+    display: flex;
+    justify-content: flex-end;
   }
 
   @media (max-width: 800px) {
@@ -344,6 +369,21 @@
       display: flex;
       justify-items: space-between;
     }
+  }
+
+  table {
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 10px 20px;
+  }
+
+  th {
+    width: auto;
   }
 
   /*PRODUCT DETAIL*/
@@ -501,12 +541,12 @@ label {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #c1121f;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 button:hover {

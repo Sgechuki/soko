@@ -37,3 +37,6 @@ class Command(BaseCommand):
             )
 
             self.stdout.write(self.style.SUCCESS(f'Product "{title}" created with slug "{slug}"'))
+    def images_urls(self, lst_str):
+        urls = self.images()
+        self.images = urls.replace("[']", "")

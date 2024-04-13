@@ -6,8 +6,8 @@
 
 {% block content %}
 
-
-<div class="shopping-cart">
+<div class="cart-container">
+  <div class="shopping-cart">
     <!-- Title -->
     <div class="title">
         Shopping Cart
@@ -39,12 +39,41 @@
     </div>
         {% endwith %}
     {% endfor %}
-</div>
-<div class="total">
-    Total: $<span id="total-price-sum">{{ cart.get_total_price }}</span>
+  </div>
+
+  <div class="totals">
+    <div class="cart-totals">
+        <div class="sub-header">
+          <h3>Totals</h3>
+        </div>
+        <table>
+          <tr>
+            <th colspan="2">Basket</th>
+          </tr>
+          <tr>
+            <td>Basket total</td>
+            <td>$<span id="sub-total-price-sum">{{ cart.get_total_price }}</span></td>
+          </tr>
+          <tr>
+            <th colspan="2">Delivery</th>
+          </tr>
+          <tr>
+            <td>Free shipping</td>
+            <td>$0</td>
+          </tr>
+          <tr>
+            <th>Order total</th>
+            <td>$<span id="total-price-sum">{{ cart.get_total_price }}</span></td>
+          </tr>
+        </table>
+        <div class="checkout-btn">
+          <button>Proceed to checkout</button>
+        </div>
+    </div>
+  </div>
+
 </div>
 
-<button id="clear-cart" >Clear Cart</button>
 
 <script>
     $(document).ready(function() {
@@ -61,8 +90,10 @@
         },
         success: function (json) {
             $('.item[data-index="'+ prodid +'"]').remove();
-            document.getElementById("total-price-sum").innerHTML = json.subtotal
-            document.getElementById("cart-qty").innerHTML = json.qty
+            document.getElementById("cart-qty").innerHTML = json.qty;
+            document.getElementById("sub-total-price-sum").innerHTML = json.subtotal;
+            document.getElementById("total-price-sum").innerHTML = json.subtotal;
+            
         },
         error: function (xhr, errmsg, err) {}
       });
@@ -84,8 +115,9 @@
           action: 'post'
         },
         success: function (json) {
-            document.getElementById("cart-qty").innerHTML = json.qty
-            document.getElementById("total-price-sum").innerHTML = json.subtotal
+            document.getElementById("cart-qty").innerHTML = json.qty;
+            document.getElementById("sub-total-price-sum").innerHTML = json.subtotal;
+            document.getElementById("total-price-sum").innerHTML = json.subtotal;
         },
         error: function (xhr, errmsg, err) {}
       });
