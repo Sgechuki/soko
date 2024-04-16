@@ -201,6 +201,27 @@
   border-color: #004080; /* Border color change when clicked */
 }
 
+/*CATEGORY*/
+.cat-hero {
+  background-image: url(../images/hero-2.png);
+  height: 90vh;
+  background-position: top 25% right 0;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cat-promo {
+  margin-left: 75px;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /*SHOPPING CART*/
 
 .shopping-cart {
