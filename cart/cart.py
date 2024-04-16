@@ -79,4 +79,7 @@ class Cart():
         self.save()
 
     def save(self):
+        """
+        Save modifications made to the session
+        """
         self.session.modified = True
