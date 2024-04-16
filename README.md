@@ -1,16 +1,6 @@
 Sokó E-Commerce Website
-Welcome to Sokó E-Commerce! This is a comprehensive guide to help you understand and set up your e-commerce website
 
 
-Table of Contents
-Overview
-Features
-Installation
-Usage
-Contributing
-License
-
-Overview
 Sokó E-Commerce is an online platform designed to provide a seamless shopping experience for customers. With its intuitive interface and robust features, Sokó allows businesses to showcase their products and manage transactions efficiently.
 
 Features
@@ -24,25 +14,25 @@ Responsive Design: Ensure a consistent user experience across devices with respo
 Installation
 To set up Sokó E-Commerce on your server, follow these steps:
 
-
-
 Clone the repository:
-git clone https://github.com/your-username/soko
+git clone https://github.com/Sgechuki/soko
 
 Navigate to the project directory:
 cd soko
 
+Set up and activate virtual environment
+    python<version> -m venv <virtual-environment-name>
+
+    source <virtual-environment-name>/bin/activate
+
 Install dependencies:
-npm install
-
-
-Set up your database and configure environment variables.
+    pip install -r requirements.txt
 
 Start the server:
-npm start
+    python manage.py runserver
 
 
-Access the website in your browser at http://localhost:3000.
+Access the website in your browser at http://localhost:8000.
 
 Usage
 Once the website is set up, you can start adding products, managing orders, and serving your customers. Here are some key usage instructions:
