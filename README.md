@@ -1,5 +1,7 @@
 # Sokó E-Commerce Website
 
+![alt text](https://github.com/Sgechuki/soko/blob/main/static/assets/images/soko.png)
+
 ## Introduction
 Sokó E-Commerce is an online platform designed to provide a seamless shopping experience for customers. With its intuitive interface and robust features, Sokó allows businesses to showcase their products and manage transactions efficiently.
 
